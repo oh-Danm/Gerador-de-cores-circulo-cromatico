@@ -1,0 +1,1 @@
+#Programa simples de geração de cores de uma color wheel#
