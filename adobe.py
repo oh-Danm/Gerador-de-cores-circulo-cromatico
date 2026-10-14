@@ -13,37 +13,49 @@ def hexadecimal(r, g, b):
     if r==0:
         h1+="00"
     else:
+        alt = 0
         while r > 0:
             a = r%16
             r = r//16
             if a >= 10:
-                h1 += chr((a-10)+ord("A"))
+                h1 += chr((a-10)+ord("a"))
             else:
                 h1 += str(a)
+            alt+=1
+    if alt < 2:
+        h1 += "0"
 
     #a mesma coisa para green
     if g==0:
         h2+="00"
     else:
+        alt = 0
         while g > 0:
-                a = g%16
-                g = g//16
-                if a >= 10:
-                    h2 += chr((a-10)+ord("A"))
-                else:
-                    h2 += str(a)
+            a = g%16
+            g = g//16
+            if a >= 10:
+                h2 += chr((a-10)+ord("a"))
+            else:
+                h2 += str(a)
+            alt+=1
+    if alt < 2:
+        h2 += "0"
 
     #e para blue
     if b==0:
         h3+="00"
     else:
+        alt = 0
         while b > 0:
-                a = b%16
-                b = b//16
-                if a >= 10:
-                    h3 += chr((a-10)+ord("A"))
-                else:
-                    h3 += str(a)
+            a = b%16
+            b = b//16
+            if a >= 10:
+                h3 += chr((a-10)+ord("a"))
+            else:
+                h3 += str(a)
+            alt+=1
+    if alt < 2:
+        h3 += "0"
 
     #inverter as strings de red, green e blue
     h1 = h1[::-1]
@@ -143,18 +155,15 @@ def cor_quad(r,g,b):
     return volta(h_q1, s, v), volta(h_q2, s, v), volta(h_q3, s, v)
 
 #chamada de input do usuário
-print("R: ")
-r = int(input())
-print("G: ")
-g = int(input())
-print("B: ")
-b = int(input())
+r = int(input("R: "))
+g = int(input("G: "))
+b = int(input("B: "))
 
 #variável para armazenamento da escolha do usuário
 opt = 0
 while True:
     #menu de escolhas
-    print("Escolha o tipo de paleta de cores:")
+    print("\nEscolha o tipo de paleta de cores:")
     print("1-Complementar")
     print("2-Análogas")
     print("3-Triádicas")
@@ -162,7 +171,7 @@ while True:
     print("5-Tetrádicas (retângulo)")
     print("6-Quadradas")
 
-    opt = int(input())
+    opt = int(input("\nOpção: "))
 
     #opção de cor complementar
     if opt == 1:
@@ -170,7 +179,7 @@ while True:
         cor1 = cor_comp(r, g, b)
 
         #impressão do valor da cor em rgb
-        print("Complementar: "+str(cor1))
+        print("Complementar: rgb"+str(cor1))
         hexa = hexadecimal(cor1[0], cor1[1], cor1[2])
         #impressão do valor da cor em hex
         print("Hex = "+hexa)
@@ -178,19 +187,19 @@ while True:
 
     #opção de cores análogas
     elif opt == 2:
-        print("Digite o valor do offset (em radianos): ")
+        print("Digite o valor do offset (em graus): ")
         offset = int(input())
         #chamada da função de gerar cores complementares
         cor1, cor2 = cor_ana(r, g, b, offset)
 
         #impressão do valor da cor em rgb
-        print("Análoga1: "+str(cor1))
+        print("Análoga1: rgb"+str(cor1))
         hexa = hexadecimal(cor1[0], cor1[1], cor1[2])
         #impressão do valor da cor em hex
         print("Hex = "+hexa)
 
         #impressão do valor da cor em rgb
-        print("Análoga2: "+str(cor2))
+        print("Análoga2: rgb"+str(cor2))
         hexa = hexadecimal(cor2[0], cor2[1], cor2[2])
         #impressão do valor da cor em hex
         print("Hex = "+hexa)
@@ -203,13 +212,13 @@ while True:
         cor1, cor2 = cor_tri(r, g, b)
 
         #impressão do valor da cor em rgb
-        print("Triádica1: "+str(cor1))
+        print("Triádica1: rgb"+str(cor1))
         hexa = hexadecimal(cor1[0], cor1[1], cor1[2])
         #impressão do valor da cor em hex
         print("Hex = "+hexa)
 
         #impressão do valor da cor em rgb
-        print("Triádica2: "+str(cor2))
+        print("Triádica2: rgb"+str(cor2))
         hexa = hexadecimal(cor2[0], cor2[1], cor2[2])
         #impressão do valor da cor em hex
         print("Hex = "+hexa)
@@ -221,13 +230,13 @@ while True:
         cor1, cor2 = split_comp(r, g, b)
 
         #impressão do valor da cor em rgb
-        print("Split-complementar1: "+str(cor1))
+        print("Split-complementar1: rgb"+str(cor1))
         hexa = hexadecimal(cor1[0], cor1[1], cor1[2])
         #impressão do valor da cor em hex
         print("Hex = "+hexa)
 
         #impressão do valor da cor em rgb
-        print("Split-complementar2: "+str(cor2))
+        print("Split-complementar2: rgb"+str(cor2))
         hexa = hexadecimal(cor2[0], cor2[1], cor2[2])
         #impressão do valor da cor em hex
         print("Hex = "+hexa)
@@ -239,19 +248,19 @@ while True:
         cor1, cor2, cor3 = cor_tetra(r, g, b)
 
         #impressão do valor da cor em rgb
-        print("Tetrádica1: "+str(cor1))
+        print("Tetrádica1: rgb"+str(cor1))
         hexa = hexadecimal(cor1[0], cor1[1], cor1[2])
         #impressão do valor da cor em hex
         print("Hex = "+hexa)
 
         #impressão do valor da cor em rgb
-        print("Tetrádica2: "+str(cor2))
+        print("Tetrádica2: rgb"+str(cor2))
         hexa = hexadecimal(cor2[0], cor2[1], cor2[2])
         #impressão do valor da cor em hex
         print("Hex = "+hexa)
 
         #impressão do valor da cor em rgb
-        print("Tetrádica3: "+str(cor3))
+        print("Tetrádica3: rgb"+str(cor3))
         hexa = hexadecimal(cor3[0], cor3[1], cor3[2])
         #impressão do valor da cor em hex
         print("Hex = "+hexa)
@@ -263,19 +272,19 @@ while True:
         cor1, cor2, cor3 = cor_quad(r, g, b)
 
         #impressão do valor da cor em rgb
-        print("Quadrada1: "+str(cor1))
+        print("Quadrada1: rgb"+str(cor1))
         hexa = hexadecimal(cor1[0], cor1[1], cor1[2])
         #impressão do valor da cor em hex
         print("Hex = "+hexa)
 
         #impressão do valor da cor em rgb
-        print("Quadrada2: "+str(cor2))
+        print("Quadrada2: rgb"+str(cor2))
         hexa = hexadecimal(cor2[0], cor2[1], cor2[2])
         #impressão do valor da cor em hex
         print("Hex = "+hexa)
 
         #impressão do valor da cor em rgb
-        print("Quadrada3: "+str(cor3))
+        print("Quadrada3: rgb"+str(cor3))
         hexa = hexadecimal(cor3[0], cor3[1], cor3[2])
         #impressão do valor da cor em hex
         print("Hex = "+hexa)
@@ -286,7 +295,7 @@ while True:
         print("Por favor selecione uma opção válida.")
 
 #impressão da cor original
-print("Original: "+str(r)+ " " +str(g)+ " " +str(b))
+print("Original: rgb("+str(r)+ ", " +str(g)+ ", " +str(b)+")")
 hexa = hexadecimal(r, g, b)
 #impressão do hex da cor original
 print("Hex = "+ hexa)
